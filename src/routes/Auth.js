@@ -7,6 +7,7 @@ const Auth = () => {
     const {
       target: { name, value },
     } = event;
+
     if (name === "email") {
       setEmail(value);
     } else if (name === "password") {
@@ -21,7 +22,7 @@ const Auth = () => {
       <form onSubmit={onSubmit}>
         <input
           name="email"
-          type="text"
+          type="email"
           placeholder="Email"
           required
           value={email}

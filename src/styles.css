@@ -6,8 +6,8 @@
 
 input {
   all: unset;
-  box-sizing: border-box;
   appearance: none;
+  box-sizing: border-box;
 }
 
 body {

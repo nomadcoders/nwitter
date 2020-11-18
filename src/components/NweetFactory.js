@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { storageService, dbService } from "fbase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,6 +7,7 @@ import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 const NweetFactory = ({ userObj }) => {
   const [nweet, setNweet] = useState("");
   const [attachment, setAttachment] = useState("");
+  const fileInput = useRef();
   const onSubmit = async (event) => {
     event.preventDefault();
     if (nweet === "") {
@@ -52,7 +53,10 @@ const NweetFactory = ({ userObj }) => {
       reader.readAsDataURL(theFile);
     }
   };
-  const onClearAttachment = () => setAttachment("");
+  const onClearAttachment = () => {
+    setAttachment("");
+    fileInput.current.value = "";
+  };
   return (
     <form onSubmit={onSubmit} className="factoryForm">
       <div className="factoryInput__container">
@@ -78,6 +82,7 @@ const NweetFactory = ({ userObj }) => {
         style={{
           opacity: 0,
         }}
+        ref={fileInput}
       />
       {attachment && (
         <div className="factoryForm__attachment">
